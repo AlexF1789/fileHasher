@@ -32,9 +32,22 @@ public class Program
 
         // let's print the results
         Console.WriteLine(string.Format("{0} unique files found - {1} duplicate files found", uniqueFiles.Count, duplicateFiles.Count));
-        foreach(string duplicate in duplicateFiles.Keys)
+        foreach (string duplicate in duplicateFiles.Keys)
         {
             Console.WriteLine(string.Format("{0} duplicates {1}", duplicate, duplicateFiles.GetValueOrDefault(duplicate, "error")));
+        }
+
+        // if we are operating in safe mode let's write everything in a text file and terminate the program
+        new OutputWriter([.. duplicateFiles.Keys]).Write();
+
+        if (configuration.IsSafe)
+            return;
+
+        // otherwise let's delete the duplicate files
+        foreach (string duplicate in duplicateFiles.Keys)
+        {
+            File.Delete(duplicate);
+            Console.WriteLine(string.Format("file {0} deleted", duplicate));
         }
     }
 }

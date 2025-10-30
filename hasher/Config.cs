@@ -6,9 +6,9 @@ namespace hasher
     public class Config
     {
         
-        private bool IsDebug { get; }
-        private bool IsSafe { get; }
-        private bool IsRecursive;
+        public bool IsDebug { get; }
+        public bool IsSafe { get; }
+        public bool IsRecursive;
         private HashSet<string> Paths = [];
         private HashSet<string>? Files;
 
