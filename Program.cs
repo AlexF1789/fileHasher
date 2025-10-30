@@ -8,6 +8,7 @@ public class Program
         string[] files = configuration.GetFiles();
         Dictionary<string, string> uniqueFiles = [];
         Dictionary<string, string> duplicateFiles = [];
+        ConsoleWriter consoleWriter = new(configuration.IsDebug, files.Length);
 
         Console.WriteLine(string.Format("Hashing {0} files", files.Length));
 
@@ -19,13 +20,12 @@ public class Program
             if (uniqueFiles.ContainsKey(hash))
             {
                 // the hash is already present
-                Console.WriteLine(fs.ToString(true));
+                consoleWriter.Print(fs, true);
                 duplicateFiles.Add(fs.Path, uniqueFiles.GetValueOrDefault(fs.GetHash(), "error"));
             }
             else
             {
-                // it's the first time this hash has been found
-                Console.WriteLine(fs.ToString(false));
+                consoleWriter.Print(fs, false);
                 uniqueFiles.Add(fs.GetHash(), fs.Path);
             }
         }
@@ -38,7 +38,7 @@ public class Program
         }
 
         // if we are operating in safe mode let's write everything in a text file and terminate the program
-        new OutputWriter([.. duplicateFiles.Keys]).Write();
+        new OutputWriter([.. duplicateFiles.Keys], files.Length).Write();
 
         if (configuration.IsSafe)
             return;
