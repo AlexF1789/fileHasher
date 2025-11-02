@@ -8,6 +8,9 @@ namespace hasher
         private string[] Duplicates = duplicates;
         private int NumFiles = numFiles;
 
+        /// <summary>
+        /// Writes the output file
+        /// </summary>
         public void Write()
         {
             using var file = new StreamWriter("output.txt");
@@ -25,12 +28,17 @@ namespace hasher
                     file.WriteLine(string.Format("\"{0}\"", duplicate));
             }
         }
-        
-        private void StartOutputFile(StreamWriter file)
+
+        /// <summary>
+        /// Starts the output file by putting the header
+        /// </summary>
+        /// <param name="file"></param>
+        private static void StartOutputFile(StreamWriter file)
         {
             file.WriteLine(string.Format("{0} --- fileHasher ---", COMMENT_CHARACTER));
             file.WriteLine(string.Format("{0} starting the duplicated file", COMMENT_CHARACTER));
         }
+        
     }
 
 };

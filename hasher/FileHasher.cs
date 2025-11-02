@@ -17,6 +17,9 @@ namespace hasher
             Path = path;
         }
 
+        /// <summary>
+        /// Calculates the hash of the file
+        /// </summary>
         private void CalculateHash()
         {
             using SHA1 sha1 = SHA1.Create();
@@ -25,6 +28,11 @@ namespace hasher
             Hash = Convert.ToHexStringLower(sha1.ComputeHash(stream));
         }
 
+        /// <summary>
+        /// Returns the hash of the file
+        /// </summary>
+        /// <returns>A string representing the file hash</returns>
+        /// <exception cref="Exception"></exception>
         public string GetHash()
         {
             // if the hash has not been computed, let's compute it
@@ -38,6 +46,11 @@ namespace hasher
             return Hash;
         }
 
+        /// <summary>
+        /// Returns a string representing the file with its hash or the duplicate indication
+        /// </summary>
+        /// <param name="duplicate">indicates if the file si duplicated</param>
+        /// <returns>a summary string for the file</returns>
         public string ToString(bool duplicate)
         {
             if (duplicate)
