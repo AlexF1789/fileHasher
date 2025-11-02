@@ -64,6 +64,41 @@ namespace hasher
         {
             Console.WriteLine(string.Format("[{0}/{1}] {2} duplicated", ProgressiveNumber++, NumFiles, fileHasher.Path));
         }
+
+        /// <summary>
+        /// Asks the user which file to keep among duplicated ones
+        /// </summary>
+        /// <param name="files">Are the files among which the user has to choose the one to keep</param>
+        /// <returns>The index in the array of the file to keep</returns>
+        public static int ChooseWhichFile(string[] files)
+        {
+            Console.WriteLine("\nWhich file do you want to keep?");
+            int attempts = 0;
+
+            for (int i = 0; i < files.Length; i++)
+                Console.WriteLine(string.Format("{0}. {1}", i, files[i]));
+
+            Console.Write("> ");
+            string? line = Console.ReadLine();
+
+            while (attempts++ < 3)
+            {
+                try
+                {
+                    if (line == null)
+                        throw new FormatException();
+
+                    return int.Parse(line);
+                }
+                catch (FormatException)
+                {
+                    Console.Write("\nThe inserted value is not valid! Please try again...\n> ");
+                    line = Console.ReadLine();
+                }
+            }
+
+            return 0;
+        }
     
     }
 

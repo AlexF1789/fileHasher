@@ -17,7 +17,7 @@ namespace hasher
 
             StartOutputFile(file);
 
-            if (Duplicates.Length >= 0)
+            if (Duplicates.Length <= 0)
             {
                 file.WriteLine(string.Format("{0} no duplicated files on {1} total files!", COMMENT_CHARACTER, NumFiles));
             }
