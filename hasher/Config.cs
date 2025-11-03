@@ -1,5 +1,3 @@
-using System.Transactions;
-
 namespace hasher
 {
     

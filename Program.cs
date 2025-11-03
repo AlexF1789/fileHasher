@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using hasher;
+﻿using hasher;
 
 public class Program
 {
