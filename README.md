@@ -3,16 +3,9 @@ File Hasher
 
 Simple program to hash files in directories from the terminal, written using C# to acheive multiplatform intercompatibility.
 
-## Build
-Due to its development nature no binaries have been released yet. To compile the software you need .NET SDK version 9 and run the command:
-```
-dotnet build
-```
-from the terminal in the cloned directory. It should work even with lower version but it's strongly recommended to use it with .NET version 9.
-
-Using only .NET Libraries or custom defined one it runs on every platform .NET runs. So far it has been developed and tested on Linux.
-
 ## Usage
+You can both use a bre-built version, available in the *Release* section of this repo or building it in the way it's specified in the *Build* section of this file.
+
 To use the program just call it from the command line with the following syntax:
 ```
 fileHasher path1 [path2, ...] [-flag1, -flag2, ...]
@@ -27,8 +20,15 @@ Where arguments can both be flags or paths. The flags are:
 
 The paths can both be files or directory in an undefined number (at least one). The dot works as a valid path (obviously it must be used with the recursive mode).
 
+## Build
+To compile the software you need .NET SDK version 10 and run the command:
+```
+dotnet build
+```
+from the terminal in the cloned directory. It should work even with lower version but it's strongly recommended to use it with .NET version 10. In case you'd like to build with a different .NET version you have to edit the *csproj* file by putting *net9.0* as the framework; watch out, no issues or bug will be handled if the versione of .NET framework is not 10 (the official one).
+
 ## Performance
 The program doesn't have a graphical user interface and uses internal data structures to perform the hashing operations. The program itself is not particularly heavy even if used on very large amount of files (even thousands with the recursive mode).
 
 ## Disclaimer
-The software is still in development, and **IT'S NOT READY TO REAL WORLD USAGE**. Please don't use it on files you care for or haven't backed up yet because it may result in unwanted deletion. The developers **ARE NOT RESPONSIBLE** for any improper usage which may lead to file losing problems.
+The software is distributed as it is so, make sure to have **backups** of the data you run it on.
